@@ -9,6 +9,36 @@ function urlFor(assetRef) {
     return `https://cdn.sanity.io/images/${SANITY_CONFIG.projectId}/${SANITY_CONFIG.dataset}/${parts[1]}-${parts[2]}.${parts[3]}`;
 }
 
+// 0. Hero
+
+async function fetchHero() {
+    const query = encodeURIComponent('*[_type == "hero"][0].slides');
+    const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const slides = data.result;
+
+        const container = document.getElementById('hero-image-container');
+        container.innerHTML = slides.map((slide, i) => `
+            <img src="${urlFor(slide.image.asset._ref)}" 
+                 class="hero-bg ${i === 0 ? 'active' : ''}" 
+                 alt="Hero Slide ${i}">
+        `).join('');
+
+        // A24 Cinematic Scroll Effect
+        window.addEventListener('scroll', () => {
+            const activeImg = document.querySelector('.hero-bg.active');
+            if (activeImg) {
+                const scrolled = window.scrollY;
+                // Subtle scale effect linked to scroll position
+                activeImg.style.transform = `scale(${1 + (scrolled / 3000)})`;
+            }
+        });
+    } catch (e) { console.error("Hero fetch error:", e); }
+}
+
 // 1. About/Services
 async function fetchAboutServices() {
     const query = encodeURIComponent('*[_type == "aboutServices"][0]{heading, bodyText, servicesList, "logoRef": logo.asset._ref}');
@@ -166,6 +196,7 @@ async function fetchFooterData() {
 }
 
 // Initialization
+fetchHero();
 fetchAboutServices();
 fetchFleet();
 fetchTestimonials();
