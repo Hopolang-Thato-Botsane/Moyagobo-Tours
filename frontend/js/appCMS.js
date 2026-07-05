@@ -4,6 +4,39 @@ const SANITY_CONFIG = {
     apiVersion: "2026-06-01"
 };
 
+// Helper to build image URL from Sanity asset reference
+function urlFor(assetRef) {
+    const parts = assetRef.split('-');
+    return `https://cdn.sanity.io/images/${SANITY_CONFIG.projectId}/${SANITY_CONFIG.dataset}/${parts[1]}-${parts[2]}.${parts[3]}`;
+}
+
+// About/Services
+async function fetchAboutServices() {
+    // Note: We are now explicitly querying for the logo asset reference
+    const query = encodeURIComponent('*[_type == "aboutServices"][0]{heading, bodyText, servicesList, "logoRef": logo.asset._ref}');
+    const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const content = data.result;
+
+        document.querySelector('.about-services-heading').textContent = content.heading;
+        document.querySelector('.about-services-body').textContent = content.bodyText;
+        
+        // Populate Logo
+        if (content.logoRef) {
+            document.querySelector('.brand-side img').src = urlFor(content.logoRef);
+        }
+        
+        const listEl = document.querySelector('.services-list');
+        listEl.innerHTML = content.servicesList.map(item => `<li>${item}</li>`).join('');
+    } catch (e) { console.error("Error in fetchAboutServices:", e); }
+}
+
+fetchAboutServices();
+
+// Testimonial
 let currentIndex = 0;
 let testimonialsData = [];
 
