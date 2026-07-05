@@ -94,3 +94,43 @@ document.querySelector('.next-btn').onclick = () => {
 };
 
 fetchTestimonials();
+
+async function fetchFooterData() {
+    const query = encodeURIComponent('*[_type == "footer"][0]');
+    const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const footer = data.result;
+
+        if (!footer) return;
+
+        // FIX: Inject background image correctly
+        if (footer.bgImage && footer.bgImage.asset) {
+            const bgUrl = urlFor(footer.bgImage.asset._ref);
+            document.getElementById('footer-section').style.backgroundImage = `url('${bgUrl}')`;
+        }
+
+        const update = (id, value) => {
+            const el = document.getElementById(id);
+            if (el && value) el.textContent = value;
+        };
+
+        update('cta-heading', footer.ctaHeading);
+        update('cta-subheading', footer.ctaSubheading);
+        update('brand-desc', footer.brandDescription);
+        update('footer-phone', footer.phone);
+        update('footer-email', footer.email);
+
+        // Populate lists
+        if (footer.legalLinks) document.getElementById('legal-list').innerHTML = footer.legalLinks.map(l => `<li>${l}</li>`).join('');
+        if (footer.navLinks) document.getElementById('nav-list').innerHTML = footer.navLinks.map(l => `<li>${l}</li>`).join('');
+
+        const btn = document.getElementById('cta-btn');
+        if (btn && footer.ctaLink) btn.onclick = () => window.location.href = footer.ctaLink;
+
+    } catch (e) { console.error("Footer fetch error:", e); }
+}
+
+fetchFooterData();

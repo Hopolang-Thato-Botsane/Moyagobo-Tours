@@ -1,0 +1,109 @@
+/* --- Global Footer Styles --- */
+.footer-integrated-section {
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    background-size: cover;
+    background-position: center;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 35% Gradient Overlay for the entire section background */
+.footer-integrated-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35));
+    z-index: 0;
+}
+
+/* CTA Overlay Content */
+.cta-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.cta-overlay h2 { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 2.5rem; margin-bottom: 10px; }
+.cta-overlay p { font-weight: 300; margin-bottom: 20px; color: #E5E7EB; }
+#cta-btn {
+    padding: 12px 24px;
+    background: #D1B48C;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Footer Wrapper: Full Width, specific padding */
+.footer-wrapper {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(rgba(22, 24, 29, 0.75), rgba(22, 24, 29, 0.75));
+    width: 100%;
+    padding: 40px 40px 24px 40px; /* Top/Left/Right 40px, Bottom 24px */
+    box-sizing: border-box;
+}
+
+/* Footer Layout Structure */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
+
+/* Left Brand Section: Locked at 362px */
+.left-brand {
+    width: 362px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.left-brand h3 { font-family: 'Poppins', sans-serif; font-weight: 500; margin: 0; }
+.left-brand p { font-weight: 300; font-size: 0.9rem; color: #E5E7EB; line-height: 1.6; margin: 0; }
+
+/* Right Links Section: Balanced Groups */
+.right-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-links {
+    min-width: 150px;
+}
+
+.footer-links h4 { 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 500;
+    margin-bottom: 16px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    font-size: 0.9rem; 
+}
+
+.footer-links ul { list-style: none; padding: 0; margin: 0; }
+.footer-links li { font-weight: 300; margin-bottom: 8px; font-size: 0.85rem; color: #D1D5DB; }
+
+/* Bottom Signature */
+.footer-bottom { 
+    border-top: 1px solid #444; 
+    padding-top: 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 0.75rem; 
+    font-weight: 300;
+    color: #6B7280; 
+}
+
+/* Responsive Fixes */
+@media (max-width: 900px) {
+    .footer-top { flex-direction: column; gap: 40px; }
+    .left-brand { width: 100%; }
+    .right-links { flex-direction: column; gap: 30px; }
+}
