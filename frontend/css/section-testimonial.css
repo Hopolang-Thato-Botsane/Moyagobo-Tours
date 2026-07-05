@@ -1,0 +1,85 @@
+.testimonial-section {
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.testimonial-wrapper {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.content-box {
+    text-align: center;
+    flex: 1;
+    color: #000000;
+}
+
+.stars {
+    color: var(--gold);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.quote {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-style: normal;
+    font-weight: 500;
+    color: #000000;
+}
+
+.author-name {
+    font-weight: 800;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.author-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #000000;
+}
+
+.nav-toggle {
+    background-color: var(--bg-dark);
+    color: #FFFFFF;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle:hover {
+    background-color: var(--gold);
+    color: #000000;
+}
+
+.pagination-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.dot {
+    width: 30px;
+    height: 6px;
+    background-color: #D1D5DB;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background-color: var(--bg-dark);
+}
