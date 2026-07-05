@@ -4,133 +4,169 @@ const SANITY_CONFIG = {
     apiVersion: "2026-06-01"
 };
 
-// Helper to build image URL from Sanity asset reference
 function urlFor(assetRef) {
     const parts = assetRef.split('-');
     return `https://cdn.sanity.io/images/${SANITY_CONFIG.projectId}/${SANITY_CONFIG.dataset}/${parts[1]}-${parts[2]}.${parts[3]}`;
 }
 
-// About/Services
+// 1. About/Services
 async function fetchAboutServices() {
-    // Note: We are now explicitly querying for the logo asset reference
     const query = encodeURIComponent('*[_type == "aboutServices"][0]{heading, bodyText, servicesList, "logoRef": logo.asset._ref}');
     const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
-    
     try {
         const response = await fetch(url);
         const data = await response.json();
         const content = data.result;
-
         document.querySelector('.about-services-heading').textContent = content.heading;
         document.querySelector('.about-services-body').textContent = content.bodyText;
-        
-        // Populate Logo
-        if (content.logoRef) {
-            document.querySelector('.brand-side img').src = urlFor(content.logoRef);
-        }
-        
-        const listEl = document.querySelector('.services-list');
-        listEl.innerHTML = content.servicesList.map(item => `<li>${item}</li>`).join('');
+        if (content.logoRef) document.querySelector('.brand-side img').src = urlFor(content.logoRef);
+        document.querySelector('.services-list').innerHTML = content.servicesList.map(item => `<li>${item}</li>`).join('');
     } catch (e) { console.error("Error in fetchAboutServices:", e); }
 }
 
-fetchAboutServices();
+// 2. Fleet Section
+let currentFleetIndex = 0;
+let fleetData = [];
 
-// Testimonial
-let currentIndex = 0;
+async function fetchFleet() {
+    const query = encodeURIComponent('*[_type == "fleet"][0].vehicles');
+    const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        fleetData = data.result;
+
+        const updateFleetUI = () => {
+            const vehicle = fleetData[currentFleetIndex];
+            document.getElementById('vehicle-class').textContent = vehicle.className;
+            document.getElementById('vehicle-image').src = urlFor(vehicle.vehicleImage.asset._ref);
+            document.getElementById('vehicle-specs').textContent = vehicle.specs;
+            document.querySelectorAll('.pagination-dots .dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentFleetIndex);
+            });
+        };
+
+        // Create Pagination
+        const container = document.querySelector('.pagination-dots');
+        container.innerHTML = '';
+        fleetData.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            dot.onclick = () => { currentFleetIndex = index; updateFleetUI(); };
+            container.appendChild(dot);
+        });
+
+        // Click Logic
+        document.querySelector('.next-arrow').onclick = () => {
+            currentFleetIndex = (currentFleetIndex + 1) % fleetData.length;
+            updateFleetUI();
+        };
+        document.querySelector('.prev-arrow').onclick = () => {
+            currentFleetIndex = (currentFleetIndex - 1 + fleetData.length) % fleetData.length;
+            updateFleetUI();
+        };
+
+        // --- MOBILE SWIPE LOGIC ---
+        let touchStartX = 0;
+        const carousel = document.querySelector('.carousel-container');
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        carousel.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) { // Only trigger if swipe is significant
+                if (diff > 0) { // Swiped Left
+                    currentFleetIndex = (currentFleetIndex + 1) % fleetData.length;
+                } else { // Swiped Right
+                    currentFleetIndex = (currentFleetIndex - 1 + fleetData.length) % fleetData.length;
+                }
+                updateFleetUI();
+            }
+        }, {passive: true});
+
+        updateFleetUI();
+    } catch (e) { console.error("Fleet fetch error:", e); }
+}
+
+// 3. Testimonial Section
+let currentTestimonialsIndex = 0;
 let testimonialsData = [];
 
 async function fetchTestimonials() {
     const query = encodeURIComponent('*[_type == "testimonial"]');
     const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
-    
     try {
         const response = await fetch(url);
         const data = await response.json();
         testimonialsData = data.result;
-        
         if (testimonialsData && testimonialsData.length > 0) {
-            updateDisplay();
+            updateTestimonialDisplay();
             createPagination();
         }
-    } catch (error) {
-        console.error("Fetch Error:", error);
-    }
+    } catch (error) { console.error("Testimonial Fetch Error:", error); }
 }
 
-function updateDisplay() {
-    const t = testimonialsData[currentIndex];
+function updateTestimonialDisplay() {
+    const t = testimonialsData[currentTestimonialsIndex];
     document.querySelector('.quote').textContent = `"${t.text}"`;
     document.querySelector('.author-name').textContent = t.author;
     document.querySelector('.author-role').textContent = t.role;
-    
-    const starContainer = document.querySelector('.stars');
-    starContainer.innerHTML = '★'.repeat(t.rating);
-    
-    document.querySelectorAll('.dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
+    document.querySelector('.stars').innerHTML = '★'.repeat(t.rating);
+    document.querySelectorAll('.testimonial-section .dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentTestimonialsIndex);
     });
 }
 
 function createPagination() {
-    const container = document.querySelector('.pagination-dots');
+    const container = document.querySelector('.testimonial-section .pagination-dots');
     container.innerHTML = '';
     testimonialsData.forEach((_, index) => {
         const dot = document.createElement('span');
         dot.classList.add('dot');
-        dot.onclick = () => { currentIndex = index; updateDisplay(); };
+        dot.onclick = () => { currentTestimonialsIndex = index; updateTestimonialDisplay(); };
         container.appendChild(dot);
     });
 }
 
 document.querySelector('.prev-btn').onclick = () => {
-    currentIndex = (currentIndex > 0) ? currentIndex - 1 : testimonialsData.length - 1;
-    updateDisplay();
+    currentTestimonialsIndex = (currentTestimonialsIndex > 0) ? currentTestimonialsIndex - 1 : testimonialsData.length - 1;
+    updateTestimonialDisplay();
 };
 
 document.querySelector('.next-btn').onclick = () => {
-    currentIndex = (currentIndex < testimonialsData.length - 1) ? currentIndex + 1 : 0;
-    updateDisplay();
+    currentTestimonialsIndex = (currentTestimonialsIndex < testimonialsData.length - 1) ? currentTestimonialsIndex + 1 : 0;
+    updateTestimonialDisplay();
 };
 
-fetchTestimonials();
-
+// 4. Footer Section
 async function fetchFooterData() {
     const query = encodeURIComponent('*[_type == "footer"][0]');
     const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
-    
     try {
         const response = await fetch(url);
         const data = await response.json();
         const footer = data.result;
-
         if (!footer) return;
-
-        // FIX: Inject background image correctly
         if (footer.bgImage && footer.bgImage.asset) {
-            const bgUrl = urlFor(footer.bgImage.asset._ref);
-            document.getElementById('footer-section').style.backgroundImage = `url('${bgUrl}')`;
+            document.getElementById('footer-section').style.backgroundImage = `url('${urlFor(footer.bgImage.asset._ref)}')`;
         }
-
-        const update = (id, value) => {
-            const el = document.getElementById(id);
-            if (el && value) el.textContent = value;
-        };
-
+        const update = (id, value) => { const el = document.getElementById(id); if (el && value) el.textContent = value; };
         update('cta-heading', footer.ctaHeading);
         update('cta-subheading', footer.ctaSubheading);
         update('brand-desc', footer.brandDescription);
         update('footer-phone', footer.phone);
         update('footer-email', footer.email);
-
-        // Populate lists
         if (footer.legalLinks) document.getElementById('legal-list').innerHTML = footer.legalLinks.map(l => `<li>${l}</li>`).join('');
         if (footer.navLinks) document.getElementById('nav-list').innerHTML = footer.navLinks.map(l => `<li>${l}</li>`).join('');
-
-        const btn = document.getElementById('cta-btn');
-        if (btn && footer.ctaLink) btn.onclick = () => window.location.href = footer.ctaLink;
-
+        if (footer.ctaLink) document.getElementById('cta-btn').onclick = () => window.location.href = footer.ctaLink;
     } catch (e) { console.error("Footer fetch error:", e); }
 }
 
+// Initialization
+fetchAboutServices();
+fetchFleet();
+fetchTestimonials();
 fetchFooterData();

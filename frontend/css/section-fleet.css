@@ -1,0 +1,132 @@
+/* --- Fleet Showcase Section --- */
+.fleet-showcase-section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #ffffff; /* Adjusted to match your clean background */
+    overflow: hidden;
+}
+
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Changed to stack content vertically */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Layered Content */
+.vehicle-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Vehicle Class Text: Layered Behind */
+.vehicle-class {
+    position: absolute;
+    top: -10%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18rem;
+    font-weight: 800;
+    color: #16181d; /* Updated color */
+    opacity: 0.1;   /* Added opacity so it doesn't overpower the car */
+    z-index: 0;
+    pointer-events: none;
+    margin: 0;
+}
+
+/* Vehicle Image: Layered In Front */
+.vehicle-image {
+    position: relative;
+    z-index: 2;
+    max-width: 65%; /* Adjusted for better scale */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Navigation Arrows: Shrunken size */
+.nav-toggle {
+    position: absolute;
+    top: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem; /* Reduced size */
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+    padding: 5px;
+}
+
+.carousel-container:hover .nav-toggle { opacity: 1; }
+.prev-arrow { left: 20px; }
+.next-arrow { right: 20px; }
+
+/* Bottom Elements (Now flow naturally under the vehicle) */
+.fleet-footer-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 3;
+}
+
+/* Pagination: Rectangles with 25% corner radius */
+.pagination-dots { display: flex; gap: 8px; }
+.dot { 
+    width: 25px; 
+    height: 6px; 
+    background: #ccc; 
+    border-radius: 25%; /* Rounded rectangle */
+    opacity: 0.5; 
+    transition: all 0.3s;
+}
+.dot.active { opacity: 1; background: #16181d; }
+
+.vehicle-specs { font-size: 1rem; color: #333; margin: 0; }
+
+.cta-quote {
+    background: #16181d;
+    color: #fff;
+    padding: 10px 25px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.cta-quote:hover { background: #333; }
+
+@media (max-width: 768px) {
+    /* Scale down the class text by ~80% */
+    .vehicle-class {
+        font-size: 8rem; 
+        top: 5%;
+    }
+    
+    /* Increase vehicle size for mobile */
+    .vehicle-image {
+        max-width: 90%; 
+        margin-top: 20px;
+    }
+
+    .vehicle-class {
+        top: 3%;
+        font-size: 6rem;
+        font-weight: 800;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
+}
