@@ -1,36 +1,126 @@
+/* --- 1. Main Container --- */
 .hero-section {
     position: relative;
+    width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 }
 
-.hero-image-container {
+/* --- 2. Background Layer --- */
+.hero-bg-layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    background-color: #333; 
 }
 
-.hero-bg {
+.hero-bg-layer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    position: absolute;
-    opacity: 0;
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
-    will-change: transform;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
-.hero-bg.active {
-    opacity: 1;
-    transform: scale(1.05); /* Cinematic A24 zoom start */
+.hero-header {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    background-color: #fff;
 }
 
-/* Ensure content sits above */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    color: #000;
+}
+
+/* Specific styling for the 'Get In Touch' button in Nav */
+.cta-nav {
+    background-color: #d4b595;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #fff !important;
+}
+
+/* --- 4. Main Hero Content --- */
 .hero-content {
-    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: start;
+    padding-left: 68px; /* Requested padding */
     z-index: 2;
-    padding: 50px;
-    color: #fff;
+    max-width: 700px;
+    color: #ffffff;
+}
+
+.hero-heading {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.hero-subheading {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* --- 5. Action Buttons (Hero) --- */
+.hero-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.cta-primary {
+    background-color: #d4b595;
+    color: #ffffff;
+    padding: 15px 35px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cta-secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 15px 35px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
 }
