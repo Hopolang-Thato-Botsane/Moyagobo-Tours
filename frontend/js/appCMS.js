@@ -63,7 +63,11 @@ async function fetchAboutServices() {
     } catch (e) { console.error("Error in fetchAboutServices:", e); }
 }
 
-// 2. Fleet Section
+// 2. Offers
+
+
+
+// 3. Fleet Section
 let currentFleetIndex = 0;
 let fleetData = [];
 
@@ -130,7 +134,7 @@ async function fetchFleet() {
     } catch (e) { console.error("Fleet fetch error:", e); }
 }
 
-// 3. Testimonial Section
+// 4. Testimonial Section
 let currentTestimonialsIndex = 0;
 let testimonialsData = [];
 
@@ -180,7 +184,7 @@ document.querySelector('.next-btn').onclick = () => {
     updateTestimonialDisplay();
 };
 
-// 4. Footer Section
+// 5. Footer Section
 async function fetchFooterData() {
     const query = encodeURIComponent('*[_type == "footer"][0]');
     const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
@@ -207,6 +211,7 @@ async function fetchFooterData() {
 // Initialization
 fetchHero();
 fetchAboutServices();
+
 fetchFleet();
 fetchTestimonials();
 fetchFooterData();
