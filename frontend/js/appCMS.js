@@ -242,3 +242,31 @@ async function fetchTransmissionData() {
 }
 
 fetchTransmissionData()
+
+
+// Successful booking
+
+async function initSuccessPage() {
+    // 1. Only run this if the element actually exists on the page
+    const partnerNameEl = document.getElementById('partner-name');
+    if (!partnerNameEl) return; 
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (!id) return;
+
+    const query = encodeURIComponent(`*[_type == "transmission" && _id == "${id}"][0]`);
+    const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
+
+    try {
+        const response = await fetch(url);
+        const { result } = await response.json();
+        
+        if (result) {
+            partnerNameEl.textContent = result.name;
+            document.getElementById('transport-provider').textContent = result.transportProvider;
+        }
+    } catch (e) { console.error("Error loading success data:", e); }
+}
+
+initSuccessPage();

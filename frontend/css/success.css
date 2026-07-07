@@ -1,0 +1,19 @@
+.success-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.content-box {
+    max-width: 600px;
+    padding: 20px;
+}
+
+#success-message {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
