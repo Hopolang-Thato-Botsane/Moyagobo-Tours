@@ -211,7 +211,34 @@ async function fetchFooterData() {
 // Initialization
 fetchHero();
 fetchAboutServices();
-
 fetchFleet();
 fetchTestimonials();
 fetchFooterData();
+
+// Transmission
+
+async function fetchTransmissionData() {
+    const container = document.getElementById('transmission-page');
+    if (!container) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    if (!id) return;
+
+    const query = encodeURIComponent(`*[_type == "partner" && _id == "${id}"][0]`);
+    const url = `https://${SANITY_CONFIG.projectId}.api.sanity.io/v${SANITY_CONFIG.apiVersion}/data/query/${SANITY_CONFIG.dataset}?query=${query}`;
+
+    try {
+        const response = await fetch(url);
+        const { result } = await response.json();
+
+        document.getElementById('partner-name').textContent = result.name;
+        document.getElementById('transport-provider').textContent = result.transportProvider;
+
+        document.getElementById('proceed-btn').onclick = () => {
+            window.location.href = result.bookingUrl;
+        };
+    } catch (e) { console.error("Transmission fetch error:", e); }
+}
+
+fetchTransmissionData()
