@@ -6,6 +6,7 @@
     <title>Moyagobo-Tours</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/services.css">
+    <link rel="stylesheet" href="css/fleet.css">
     <link rel="stylesheet" href="css/packages.css">
     <link rel="stylesheet" href="css/testimonials.css">
     <link rel="stylesheet" href="css/faqs.css">
@@ -20,6 +21,14 @@
         </div>
 
         <div class="services-stack-container">
+        </div>
+    </section>
+
+    <section id="fleet-section">
+        <div class="fleet-sticky-wrapper">
+            <div class="fleet-layout">
+            <div class="fleet-track"></div>
+            </div>
         </div>
     </section>
 
@@ -85,6 +94,11 @@
     <script type="module">
         import { initPackages } from './js/packages.js';
         initPackages('.packages-grid');
+    </script>
+
+    <script type="module">
+        import { initFleet } from './js/fleet.js';
+        initFleet('.fleet-track');
     </script>
 
 </body>

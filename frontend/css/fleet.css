@@ -1,0 +1,119 @@
+#fleet-section {
+  max-width: 1400px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+
+.fleet-sticky-wrapper {
+  height: 300vh;
+  position: relative;
+}
+
+.fleet-layout {
+  position: sticky;
+  top: 80px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fleet-track {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.fleet-card {
+  flex: 0 0 100%;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #000000;
+  padding: 40px 50px 30px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 75vh;
+  max-height: 720px;
+}
+
+.fleet-info-top {
+  text-align: center;
+  flex-shrink: 0;
+  margin-bottom: 5px;
+}
+
+.fleet-brand {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.fleet-model {
+  font-size: 3.8rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.fleet-image-container {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fleet-image-container img {
+  max-width: 90%;
+  max-height: 100%;
+  object-fit: contain;
+  transform: scaleX(-1);
+}
+
+.fleet-details {
+  text-align: center;
+  flex-shrink: 0;
+  border-top: 1px solid #eaeaea;
+  padding-top: 16px;
+  margin-top: 5px;
+}
+
+.fleet-type {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.fleet-specs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #555;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.spec-item:not(:last-child)::after {
+  content: "|";
+  margin-left: 16px;
+  color: #ccc;
+  font-weight: 300;
+}
