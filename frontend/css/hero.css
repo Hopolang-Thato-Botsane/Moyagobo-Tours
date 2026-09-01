@@ -1,0 +1,118 @@
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('../public/assets/background/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.hero-logo-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: var(--font-heading);
+}
+
+.reserve-btn {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.reserve-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.hero-content {
+  padding: 0 60px;
+  max-width: 750px;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  max-width: 600px;
+}
+
+.hero-logos-container {
+  overflow: hidden;
+  width: 100%;
+  padding: 30px 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.hero-logos-track {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+  align-items: center;
+  animation: marquee 30s linear infinite;
+}
+
+.hero-logos-track:hover {
+  animation-play-state: paused;
+}
+
+.hero-logo-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.hero-logo-item:hover {
+  opacity: 1;
+}
+
+.hero-logo-item img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
