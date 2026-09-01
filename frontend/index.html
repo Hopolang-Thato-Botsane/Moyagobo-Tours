@@ -5,31 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moyagobo-Tours</title>
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/services.css">
     <link rel="stylesheet" href="css/testimonials.css">
     <link rel="stylesheet" href="css/faqs.css">
 </head>
 <body>
 
+    <section id="services-section">
+        <div class="services-header">
+            <h2>How We Serve</h2>
+            <p>Tailored transit solutions and curated hospitality experiences engineered for absolute comfort, reliability, and precision.</p>
+            <button class="ask-btn">Reserve A Trip</button>
+        </div>
+
+        <div class="services-stack-container">
+        </div>
+    </section>
+
     <section id="testimonials-section">
-    <div class="testimonials-header">
-        <h2>What Our Travelers Say</h2>
-        <p>Real stories from individual guests, vacationing families, and partner hotel managers who trust us to handle their journeys seamlessly from start to finish.</p>
-        <button class="ask-btn">Reserve Shuttle</button>
-    </div>
-
-    <div class="testimonials-sticky-wrapper">
-        <div class="testimonials-layout">
-        <div class="rating-card">
-            <span class="rating-score">4.8</span>
-            <span class="rating-subtitle">250+ Reviews</span>
-            <div class="stars">★★★★★</div>
+        <div class="testimonials-header">
+            <h2>What Our Travelers Say</h2>
+            <p>Real stories from individual guests, vacationing families, and partner hotel managers who trust us to handle their journeys seamlessly from start to finish.</p>
+            <button class="ask-btn">Reserve Shuttle</button>
         </div>
 
-        <div class="testimonials-viewport">
-            <div class="testimonials-track"></div>
+        <div class="testimonials-sticky-wrapper">
+            <div class="testimonials-layout">
+            <div class="rating-card">
+                <span class="rating-score">4.8</span>
+                <span class="rating-subtitle">250+ Reviews</span>
+                <div class="stars">★★★★★</div>
+            </div>
+
+            <div class="testimonials-viewport">
+                <div class="testimonials-track"></div>
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
     </section>
 
     <section id="faq-section">
@@ -42,6 +54,11 @@
         <!-- Dynamically injected grid -->
         <div class="faq-grid"></div>
     </section>
+
+    <script type="module">
+        import { initServices } from './js/services.js';
+        initServices('.services-stack-container');
+    </script>
 
     <script type="module">
         import { initFAQs } from './js/faqs.js';
