@@ -1,0 +1,149 @@
+#packages-section {
+  max-width: 1400px;
+  margin: 120px auto;
+  padding: 0 24px;
+}
+
+.packages-header {
+  margin-bottom: 60px;
+}
+
+.packages-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.packages-header p {
+  color: #333;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.package-card {
+  position: relative;
+  min-height: 520px;
+  border: 1px solid #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.package-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.package-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);
+  z-index: 2;
+}
+
+.package-top, .package-info {
+  position: relative;
+  z-index: 3;
+}
+
+.package-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.package-rating {
+  font-size: 0.85rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.package-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.package-tags span {
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.package-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.package-info p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #dddddd;
+  margin-bottom: 20px;
+}
+
+.package-pricing {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 16px;
+}
+
+.package-pricing .price {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.package-pricing .price-sub {
+  font-size: 0.8rem;
+  color: #cccccc;
+}
+
+.book-exp-btn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover state styling matching your 5th card requirement */
+.package-card:hover .book-exp-btn,
+.book-exp-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}

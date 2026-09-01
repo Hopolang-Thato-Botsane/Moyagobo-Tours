@@ -6,6 +6,7 @@
     <title>Moyagobo-Tours</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/services.css">
+    <link rel="stylesheet" href="css/packages.css">
     <link rel="stylesheet" href="css/testimonials.css">
     <link rel="stylesheet" href="css/faqs.css">
 </head>
@@ -44,6 +45,17 @@
         </div>
     </section>
 
+    <section id="packages-section">
+        <div class="packages-header">
+            <h2>Stay & Transfer Packages</h2>
+            <p>Explore exclusive packages and special offers from our trusted hotel and resort partners across the region.</p>
+            <button class="ask-btn">Reserve Trip</button>
+        </div>
+
+        <div class="packages-grid">
+        </div>
+    </section>
+
     <section id="faq-section">
         <div class="faq-header">
             <h2>Before You Pack</h2>
@@ -68,6 +80,11 @@
     <script type="module">
         import { initTestimonials } from './js/testimonials.js';
         initTestimonials('.testimonials-track');
+    </script>
+
+    <script type="module">
+        import { initPackages } from './js/packages.js';
+        initPackages('.packages-grid');
     </script>
 
 </body>
