@@ -5,131 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moyagobo-Tours</title>
     <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/section-hero.css">
-    <link rel="stylesheet" href="css/section-about-services.css">
-    <link rel="stylesheet" href="css/section-offers-special.css">
-    <link rel="stylesheet" href="css/section-fleet.css">
-    <link rel="stylesheet" href="css/section-testimonial.css">
-    <link rel="stylesheet" href="css/section-footer.css">
+    <link rel="stylesheet" href="css/faqs.css">
 </head>
 <body>
 
-    <section class="full-width-section hero-section">
-        <div class="hero-bg-layer" id="hero-bg-layer"></div>
-
-        <header class="hero-header">
-            <div class="logo">M-Tours</div>
-            <nav class="nav-links">
-                <a href="#">About</a>
-                <a href="#">Destinations</a>
-                <a href="#">Fleet</a>
-                <a href="/contact" class="cta-nav">Get In Touch</a>
-            </nav>
-        </header>
-
-        <div class="hero-content">
-            <h1 id="hero-heading"></h1>
-            <p id="hero-subheading"></p>
-            <div class="hero-actions"></div>
+    <section id="faq-section">
+        <div class="faq-header">
+            <h2>Before You Pack</h2>
+            <p>Find answers to the most common questions about your stay, check-in, amenities and resort services before you arrive.</p>
+            <button class="ask-btn">Ask A Question</button>
         </div>
+  
+        <!-- Dynamically injected grid -->
+        <div class="faq-grid"></div>
     </section>
 
-    <section class="about-services-section">
-        <div class="about-services-wrapper">
-            <div class="brand-side">
-                <img src="" alt="M-Tours Logo">
-            </div>
-            <div class="content-side">
-                <h2 class="about-services-heading"></h2>
-                <p class="about-services-body"></p>
-                <ul class="services-list"></ul>
-            </div>
-        </div>
-    </section>
+    <script type="module">
+        import { initFAQs } from './js/faqs.js';
+        initFAQs('.faq-grid');
+    </script>
 
-    <section class="fleet-showcase-section">
-        <div class="carousel-container">
-            <button class="nav-toggle prev-arrow" aria-label="Previous">&#8592;</button>
-
-            <div class="vehicle-content">
-                <h2 class="vehicle-class" id="vehicle-class">A-Class</h2>
-                
-                <img src="path/to/vehicle.png" alt="Vehicle" class="vehicle-image" id="vehicle-image">
-                
-                <div class="fleet-footer-controls">
-                    <div class="pagination-dots">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <p class="vehicle-specs" id="vehicle-specs">488 liters of cargo / On-Board WiFi / Fast Charging</p>
-                    <button class="cta-quote" id="cta-quote">Request Your Quote</button>
-                </div>
-            </div>
-
-            <button class="nav-toggle next-arrow" aria-label="Next">&#8594;</button>
-        </div>
-    </section>
-
-    <section class="testimonial-section">
-
-        <div class="testimonial-wrapper">
-            <button class="nav-toggle prev-btn">←</button>
-            
-            <div class="content-box">
-                <div class="stars" id="star-rating"></div>
-                <p class="quote">"</p>
-                <h3 class="author-name"></h3>
-                <p class="author-role"></p>
-            </div>
-
-            <button class="nav-toggle next-btn">→</button>
-        </div>
-        
-        <div class="pagination-dots">
-        </div>
-
-    </section>
-
-    <footer class="footer-integrated-section" id="footer-section">
-        <div class="cta-overlay">
-            <h2 id="cta-heading"></h2>
-            <p id="cta-subheading"></p>
-            <button id="cta-btn">Request Quote</button>
-        </div>
-
-        <div class="footer-wrapper">
-            <div class="footer-top">
-                <div class="left-brand">
-                    <h3>M-Tours</h3>
-                    <p id="brand-desc"></p>
-                    <div class="social-icons" id="social-container"></div>
-                </div>
-                
-                <div class="right-links">
-                    <div class="footer-links">
-                        <h4>Get In Touch</h4>
-                        <p id="footer-phone"></p>
-                        <p id="footer-email"></p>
-                    </div>
-                    <div class="footer-links">
-                        <h4>Legal</h4>
-                        <ul id="legal-list"></ul>
-                    </div>
-                    <div class="footer-links">
-                        <h4>Navigation</h4>
-                        <ul id="nav-list"></ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 MTours. All rights reserved.</p>
-                <p>Built by: <em>thbjr</em></p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/appCMS.js"></script>
 </body>
 </html>

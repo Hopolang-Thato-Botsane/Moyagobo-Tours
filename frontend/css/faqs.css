@@ -1,0 +1,70 @@
+/* faq.css */
+#faq-section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+
+.faq-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.faq-header p {
+  font-size: 1rem;
+  color: #333333;
+  margin-bottom: 24px;
+}
+
+.ask-btn {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-weight: 500;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 60px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 60px;
+}
+
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.faq-question-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.faq-text {
+  font-size: 1rem;
+  font-weight: 500;
+  padding-right: 16px;
+}
+
+.faq-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.faq-answer-container {
+  padding-top: 12px;
+  padding-bottom: 16px;
+  font-size: 0.95rem;
+  color: #333333;
+}
