@@ -5,9 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moyagobo-Tours</title>
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/testimonials.css">
     <link rel="stylesheet" href="css/faqs.css">
 </head>
 <body>
+
+    <section id="testimonials-section">
+    <div class="testimonials-header">
+        <h2>What Our Travelers Say</h2>
+        <p>Real stories from individual guests, vacationing families, and partner hotel managers who trust us to handle their journeys seamlessly from start to finish.</p>
+        <button class="ask-btn">Reserve Shuttle</button>
+    </div>
+
+    <div class="testimonials-sticky-wrapper">
+        <div class="testimonials-layout">
+        <div class="rating-card">
+            <span class="rating-score">4.8</span>
+            <span class="rating-subtitle">250+ Reviews</span>
+            <div class="stars">★★★★★</div>
+        </div>
+
+        <div class="testimonials-viewport">
+            <div class="testimonials-track"></div>
+        </div>
+        </div>
+    </div>
+    </section>
 
     <section id="faq-section">
         <div class="faq-header">
@@ -23,6 +46,11 @@
     <script type="module">
         import { initFAQs } from './js/faqs.js';
         initFAQs('.faq-grid');
+    </script>
+
+    <script type="module">
+        import { initTestimonials } from './js/testimonials.js';
+        initTestimonials('.testimonials-track');
     </script>
 
 </body>

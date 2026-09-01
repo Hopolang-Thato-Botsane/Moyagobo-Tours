@@ -64,8 +64,7 @@ export function initFAQs(containerSelector) {
 
     item.addEventListener('click', () => {
       const isOpen = answerContainer.style.display === 'block';
-      
-      // Toggle state
+
       answerContainer.style.display = isOpen ? 'none' : 'block';
       btn.textContent = isOpen ? '+' : '–';
       item.classList.toggle('active', !isOpen);
