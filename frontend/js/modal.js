@@ -1,4 +1,5 @@
 import { initTransferModal } from './modalTransfer.js';
+import { initChauffeurModal } from './modalChauffeur.js';
 
 export function initModal() {
   const triggerBtns = document.querySelectorAll('.reserve-btn, .ask-btn, .footer-reserve-btn');
@@ -39,6 +40,11 @@ export function initModal() {
       if (service === 'airport-transfer') {
         modalOverlay.classList.remove('active');
         initTransferModal();
+      }
+
+      if (service === 'book-chauffeur' || service === 'chauffeur') {
+        modalOverlay.classList.remove('active');
+        initChauffeurModal();
       }
     });
   });
