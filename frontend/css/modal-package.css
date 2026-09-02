@@ -1,0 +1,174 @@
+.package-modal-container {
+    max-width: 800px;
+}
+
+#packageResortTrack,
+#packageFleetTrack {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    scrollbar-width: thin;
+}
+
+#packageResortTrack::-webkit-scrollbar,
+#packageFleetTrack::-webkit-scrollbar {
+    height: 6px;
+}
+
+#packageResortTrack::-webkit-scrollbar-thumb,
+#packageFleetTrack::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.package-card-option {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.package-card-option.selected {
+    border-color: #000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.package-card-option .package-bg {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.package-card-option .package-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+}
+
+.package-card-option .package-top {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.package-card-option .package-rating {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.package-card-option .package-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.package-card-option .package-tags span {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.package-card-option .package-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.package-card-option h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #111;
+}
+
+.package-card-option p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.package-card-option .package-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.package-card-option .package-pricing .price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+}
+
+.package-card-option .package-pricing .price-sub {
+    font-size: 11px;
+    color: #888;
+}
+
+#packageFleetTrack .fleet-card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#packageFleetTrack .fleet-card.selected {
+    border-color: #000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+#packageFleetTrack .fleet-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.return-trip-fields {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    visibility: hidden;
+}
+
+.return-trip-fields.active {
+    max-height: 350px;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 15px;
+}
