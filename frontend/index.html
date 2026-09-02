@@ -12,8 +12,162 @@
     <link rel="stylesheet" href="css/testimonials.css">
     <link rel="stylesheet" href="css/faqs.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/modal-transfer.css">
 </head>
 <body>
+
+    <div id="reservation-modal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            
+            <div class="modal-content-step" data-step="1">
+            <h2 class="modal-title">Good evening. How may we curate your journey tonight?</h2>
+            
+            <div class="modal-options-grid">
+                <div class="modal-option-card" data-service="airport-transfer">
+                <div class="option-icon">✈️</div>
+                <div class="option-text">
+                    <h3>Airport Transfer</h3>
+                    <p>Flight-monitored pickups and drop-offs to and from local airports.</p>
+                </div>
+                </div>
+
+                <div class="modal-option-card" data-service="book-chauffeur">
+                <div class="option-icon">💂</div>
+                <div class="option-text">
+                    <h3>Book Chauffeur</h3>
+                    <p>Dedicated vehicle and driver at your disposal for business or leisure.</p>
+                </div>
+                </div>
+
+                <div class="modal-option-card" data-service="stay-transfer">
+                <div class="option-icon">🏢</div>
+                <div class="option-text">
+                    <h3>Stay & Transfer Package</h3>
+                    <p>Curated accommodation bundles combined with seamless private transit.</p>
+                </div>
+                </div>
+
+                <div class="modal-option-card" data-service="regional-tours">
+                <div class="option-icon">🏺</div>
+                <div class="option-text">
+                    <h3>Regional Tours and Excursions</h3>
+                    <p>Tailored sightseeing and local explorations across the highveld</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="modal-footer-hint">
+                <span>Pick an option to get started</span>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="airport-transfer-modal" class="modal-overlay">
+        <div class="modal-container transfer-modal-container">
+            <button class="modal-back-btn" aria-label="Back to options">&larr; Back</button>
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+
+            <div class="modal-content-step transfer-form-view">
+                <div class="transfer-header">
+                    <h2 class="modal-title">Airport Transfer</h2>
+                    <p class="transfer-subtitle">Reliable, flight-monitored pickups and drop-offs.</p>
+                </div>
+
+                <form class="transfer-form">
+                    <div class="form-section-title">Trip Details</div>
+                    
+                    <div class="form-group full-width">
+                        <label>Primary Contact:</label>
+                        <input type="text" placeholder="Input" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" placeholder="Input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cellphone:</label>
+                            <input type="tel" placeholder="Input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section-title">Trip Details</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Pick Up:</label>
+                            <input type="text" placeholder="Input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Drop-Off:</label>
+                            <input type="text" placeholder="Input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Number of Passengers:</label>
+                            <input type="number" placeholder="Input" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Flight Number:</label>
+                            <input type="text" placeholder="Input">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Arrival Date:</label>
+                        <input type="date" placeholder="Input" required>
+                    </div>
+
+                    <div class="form-group toggle-group">
+                        <label>Is there a return trip?</label>
+                        <label class="switch">
+                            <input type="checkbox" id="return-trip-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div id="return-trip-container" class="return-trip-section" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Return Pick Up:</label>
+                                <input type="text" placeholder="Input">
+                            </div>
+                            <div class="form-group">
+                                <label>Return Date:</label>
+                                <input type="date" placeholder="Input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section-title">Vehicle Selection</div>
+                    <section id="fleet-section" class="modal-fleet-override">
+                        <div class="fleet-sticky-wrapper">
+                            <div class="fleet-layout">
+                                <div class="fleet-track" id="modalFleetTrack"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <button type="submit" class="submit-transfer-btn">Request Airport Transfer Quote</button>
+                </form>
+            </div>
+
+            <div class="transfer-success-view" id="transferSuccessView">
+                <div class="success-content">
+                    <p class="success-message">
+                        Flight details logged successfully. Our dispatch team is monitoring your schedule and will send a confirmation and quote to your WhatsApp & email shortly.
+                    </p>
+                </div>
+                <button class="close-success-btn">Close Window</button>
+            </div>
+        </div>
+    </div>
 
     <section class="hero-section">
         <header class="hero-header">
@@ -186,6 +340,11 @@
     <script type="module">
         import { initFleet } from './js/fleet.js';
         initFleet('.fleet-track');
+    </script>
+
+    <script type="module">
+        import { initModal } from './js/modal.js';
+        initModal();
     </script>
 
 </body>
