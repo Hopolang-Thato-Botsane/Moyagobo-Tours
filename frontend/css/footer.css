@@ -1,38 +1,57 @@
 .site-footer {
   position: relative;
   width: 100%;
-  min-height: 85vh;
+  min-height: auto;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('../public/assets/background/footer-bg.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 80px 80px 30px 80px;
+  padding: 60px 20px 30px 20px;
   box-sizing: border-box;
   color: #ffffff;
 }
 
+@media (min-width: 768px) {
+  .site-footer {
+    padding: 80px 40px 30px 40px;
+    min-height: 85vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-footer {
+    padding: 80px 80px 30px 80px;
+  }
+}
+
 .footer-cta-container {
   text-align: center;
-  margin: auto 0;
+  margin: 40px auto;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .footer-title {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-family: var(--font-heading);
   font-weight: 700;
   margin-bottom: 14px;
   letter-spacing: -1px;
+  line-height: 1.15;
 }
 
 .footer-subtitle {
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: #e0e0e0;
   margin-bottom: 28px;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .footer-subtitle {
+    font-size: 1.15rem;
+  }
 }
 
 .footer-reserve-btn {
@@ -57,11 +76,26 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  margin-top: 60px;
-  padding-bottom: 40px;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: 40px;
+  padding-bottom: 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (min-width: 576px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+    padding-bottom: 40px;
+  }
 }
 
 .footer-col h4 {
