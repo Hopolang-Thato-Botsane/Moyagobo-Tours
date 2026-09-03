@@ -474,13 +474,14 @@
         </div>
     </section>
 
-    <section id="fleet-section">
-        <div class="fleet-sticky-wrapper">
-            <div class="fleet-layout">
-            <div class="fleet-track"></div>
-            </div>
+<!-- index.html (Main Page Fleet Section) -->
+<section id="fleet-section">
+    <div class="fleet-sticky-wrapper">
+        <div class="fleet-layout">
+            <div class="fleet-track" id="mainFleetTrack"></div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="testimonials-section">
         <div class="testimonials-header">
@@ -602,6 +603,12 @@
     <script type="module">
         import { initFleet } from './js/fleet.js';
         initFleet('.fleet-track');
+    </script>
+
+    <script type="module">
+        import { initFleet } from './js/fleet.js';
+        // Target specifically by unique ID to prevent selector overlapping
+        initFleet('#mainFleetTrack');
     </script>
 
     <script type="module">
