@@ -1,4 +1,5 @@
 // js/fleet.js
+// js/fleet.js
 export const fleetData = [
   {
     brand: "Mercedes-Benz",
@@ -96,7 +97,26 @@ export function initFleet(trackSelector) {
     const scrolled = -rect.top;
 
     let progress = 0;
+    let progress = 0;
     if (scrolled >= 0 && scrolled <= scrollableDistance) {
+      progress = scrolled / scrollableDistance;
+    } else if (scrolled > scrollableDistance) {
+      progress = 1;
+    }
+
+    const maxTranslate = track.scrollWidth - track.clientWidth;
+    targetTranslate = -progress * maxTranslate;
+
+    if (!isTicking) {
+      isTicking = true;
+      requestAnimationFrame(render);
+    }
+  }
+
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  window.addEventListener('resize', updateScroll, { passive: true });
+  
+  updateScroll();
       progress = scrolled / scrollableDistance;
     } else if (scrolled > scrollableDistance) {
       progress = 1;
