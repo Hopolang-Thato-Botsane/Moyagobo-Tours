@@ -4,15 +4,22 @@
   padding: 0 24px;
 }
 
+.faq-header {
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
 .faq-header h2 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 12px;
+  line-height: 1.2;
 }
 
 .faq-header p {
   font-size: 1rem;
   color: #333333;
   margin-bottom: 24px;
+  line-height: 1.5;
 }
 
 .ask-btn {
@@ -24,13 +31,29 @@
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
+  transition: opacity 0.2s ease;
+}
+
+.ask-btn:hover {
+  opacity: 0.85;
 }
 
 .faq-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px 60px;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 900px) {
+  .faq-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 60px;
+  }
+  
+  .faq-header {
+    margin-bottom: 60px;
+  }
 }
 
 .faq-item {
@@ -44,13 +67,14 @@
   justify-content: space-between;
   align-items: flex-start;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color, #eaeaea);
+  gap: 16px;
 }
 
 .faq-text {
   font-size: 1rem;
   font-weight: 500;
-  padding-right: 16px;
+  line-height: 1.4;
 }
 
 .faq-toggle-btn {
@@ -59,6 +83,8 @@
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1;
+  flex-shrink: 0;
+  padding: 0;
 }
 
 .faq-answer-container {
@@ -66,4 +92,5 @@
   padding-bottom: 16px;
   font-size: 0.95rem;
   color: #333333;
+  line-height: 1.5;
 }
