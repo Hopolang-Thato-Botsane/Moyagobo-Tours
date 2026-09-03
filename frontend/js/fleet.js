@@ -1,5 +1,3 @@
-// js/fleet.js
-// js/fleet.js
 export const fleetData = [
   {
     brand: "Mercedes-Benz",
@@ -39,7 +37,10 @@ export const fleetData = [
 
 export function initFleet(trackSelector) {
   const track = document.querySelector(trackSelector);
-  if (!track) return;
+  if (!track) {
+    console.error(`Fleet track not found for selector: ${trackSelector}`);
+    return;
+  }
 
   track.innerHTML = fleetData.map(vehicle => `
     <div class="fleet-card">
@@ -48,7 +49,7 @@ export function initFleet(trackSelector) {
         <h2 class="fleet-model">${vehicle.model}</h2>
       </div>
       <div class="fleet-image-container">
-        <img src="${vehicle.image}" alt="${vehicle.brand} ${vehicle.model}" />
+        <img src="${vehicle.image}" alt="${vehicle.brand} ${vehicle.model}" loading="lazy" />
       </div>
       <div class="fleet-details">
         <p class="fleet-type">${vehicle.type}</p>
@@ -65,15 +66,17 @@ export function initFleet(trackSelector) {
   `).join('');
 
   const wrapper = track.closest('.fleet-sticky-wrapper');
-  if (!wrapper) return;
+  if (!wrapper) {
+    console.error("Missing parent wrapper with class '.fleet-sticky-wrapper'");
+    return;
+  }
 
   let currentTranslate = 0;
   let targetTranslate = 0;
   let isTicking = false;
 
   function render() {
-    currentTranslate += (targetTranslate - currentTranslate) * 0.1;
-    
+    currentTranslate += (targetTranslate - currentTranslate) * 0.08;
     track.style.transform = `translateX(${currentTranslate}px)`;
 
     if (Math.abs(targetTranslate - currentTranslate) > 0.05) {
@@ -86,25 +89,22 @@ export function initFleet(trackSelector) {
   function updateScroll() {
     if (window.innerWidth <= 1024) {
       track.style.transform = 'none';
+      currentTranslate = 0;
+      targetTranslate = 0;
       return;
     }
 
-    const rect = wrapper.getBoundingClientRect();
+    const wrapperRect = wrapper.getBoundingClientRect();
     const wrapperHeight = wrapper.offsetHeight;
-    const windowHeight = window.innerHeight;
+    const scrollableDistance = wrapperHeight - window.innerHeight;
+    
+    if (scrollableDistance <= 0) return;
 
-    const scrollableDistance = wrapperHeight - windowHeight;
-    const scrolled = -rect.top;
+    const scrollPosition = -wrapperRect.top;
+    let progress = scrollPosition / scrollableDistance;
+    progress = Math.max(0, Math.min(1, progress));
 
-    let progress = 0;
-    let progress = 0;
-    if (scrolled >= 0 && scrolled <= scrollableDistance) {
-      progress = scrolled / scrollableDistance;
-    } else if (scrolled > scrollableDistance) {
-      progress = 1;
-    }
-
-    const maxTranslate = track.scrollWidth - track.clientWidth;
+    const maxTranslate = track.scrollWidth - wrapper.clientWidth;
     targetTranslate = -progress * maxTranslate;
 
     if (!isTicking) {
@@ -115,24 +115,7 @@ export function initFleet(trackSelector) {
 
   window.addEventListener('scroll', updateScroll, { passive: true });
   window.addEventListener('resize', updateScroll, { passive: true });
-  
-  updateScroll();
-      progress = scrolled / scrollableDistance;
-    } else if (scrolled > scrollableDistance) {
-      progress = 1;
-    }
+  window.addEventListener('load', updateScroll);
 
-    const maxTranslate = track.scrollWidth - track.clientWidth;
-    targetTranslate = -progress * maxTranslate;
-
-    if (!isTicking) {
-      isTicking = true;
-      requestAnimationFrame(render);
-    }
-  }
-
-  window.addEventListener('scroll', updateScroll, { passive: true });
-  window.addEventListener('resize', updateScroll, { passive: true });
-  
   updateScroll();
 }

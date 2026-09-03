@@ -474,13 +474,13 @@
         </div>
     </section>
 
-    <section id="fleet-section">
-        <div class="fleet-sticky-wrapper">
-            <div class="fleet-layout">
-            <div class="fleet-track"></div>
-            </div>
+    <div class="fleet-sticky-wrapper">
+    <div class="fleet-sticky-container">
+        <div class="fleet-track" id="mainFleetTrack">
+        <!-- Vehicle cards inject here -->
         </div>
-    </section>
+    </div>
+    </div>
 
     <section id="testimonials-section">
         <div class="testimonials-header">
@@ -522,7 +522,6 @@
             <button class="ask-btn">Ask A Question</button>
         </div>
   
-        <!-- Dynamically injected grid -->
         <div class="faq-grid"></div>
     </section>
 
@@ -595,12 +594,6 @@
         initFleet('#chauffeurFleetTrack');
         initFleet('#packageFleetTrack');
         initFleet('.fleet-track');
-    </script>
-
-    <script type="module">
-        import { initFleet } from './js/fleet.js';
-        // Target specifically by unique ID to prevent selector overlapping
-        initFleet('#mainFleetTrack');
     </script>
 
 </body>

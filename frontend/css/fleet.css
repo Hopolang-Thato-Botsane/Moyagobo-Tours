@@ -1,152 +1,145 @@
-/* fleet.css */
-#fleet-section {
-  max-width: 1400px;
-  margin: 80px auto;
-  padding: 0 24px;
-}
+/* =================================================================el
+   Fleet Section - Layout & Structural Architecture
+   ================================================================= */
 
 .fleet-sticky-wrapper {
-  height: 300vh;
   position: relative;
+  height: 350vh;
+  width: 100%;
 }
 
-.fleet-layout {
+.fleet-sticky-container {
   position: sticky;
-  top: 80px;
-  overflow: hidden;
+  top: 0;
+  height: 100vh;
   width: 100%;
-  height: 75vh;
-  max-height: 720px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .fleet-track {
   display: flex;
-  gap: 30px;
-  align-items: flex-start;
+  gap: 2.5rem;
   will-change: transform;
-  height: 100%;
+  padding-left: 6vw;
+  padding-right: 6vw;
+  box-sizing: border-box;
 }
 
+/* =================================================================el
+   Fleet Card & Internal Elements
+   ================================================================= */
+
 .fleet-card {
-  flex: 0 0 calc(80vw - 40px);
-  max-width: 1000px;
-  min-width: 300px;
-  background: #ffffff;
-  border: 1px solid #000000;
-  padding: 40px 50px 30px 50px;
+  flex: 0 0 420px;
+  background: #161616;
+  border-radius: 16px;
+  overflow: hidden;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-  height: 100%;
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .fleet-info-top {
-  text-align: center;
-  flex-shrink: 0;
-  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .fleet-brand {
   font-size: 0.85rem;
-  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #666;
-  margin-bottom: 2px;
-  display: block;
+  letter-spacing: 0.1em;
+  color: #888888;
 }
 
 .fleet-model {
-  font-size: 3.8rem;
-  font-family: var(--font-heading);
+  font-size: 1.75rem;
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -1px;
+  color: #ffffff;
+  margin: 0;
 }
 
 .fleet-image-container {
   width: 100%;
-  flex-grow: 1;
+  height: 220px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
-  overflow: hidden;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .fleet-image-container img {
-  max-width: 90%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  transform: scaleX(-1);
+  display: block;
 }
 
 .fleet-details {
-  text-align: center;
-  flex-shrink: 0;
-  border-top: 1px solid #eaeaea;
-  padding-top: 16px;
-  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: auto;
 }
 
 .fleet-type {
   font-size: 0.95rem;
-  color: #333;
-  margin-bottom: 12px;
+  line-height: 1.5;
+  color: #cccccc;
+  margin: 0;
 }
 
 .fleet-specs {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
   flex-wrap: wrap;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
 }
 
 .spec-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
   font-size: 0.85rem;
-  color: #555;
-  background: none;
-  border: none;
-  padding: 0;
+  color: #dddddd;
 }
 
-.spec-item:not(:last-child)::after {
-  content: "|";
-  margin-left: 16px;
-  color: #ccc;
-  font-weight: 300;
-}
+/* =================================================================el
+   Responsive Media Queries
+   ================================================================= */
 
 @media (max-width: 1024px) {
   .fleet-sticky-wrapper {
-    height: auto !important;
-    position: static !important;
+    height: auto;
   }
-
-  .fleet-layout {
-    position: static !important;
-    height: auto !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 16px;
+  
+  .fleet-sticky-container {
+    position: relative;
+    height: auto;
+    overflow-x: auto;
+    display: block;
   }
-
+  
   .fleet-track {
     transform: none !important;
-    width: max-content;
-    height: auto !important;
+    display: flex;
+    overflow-x: auto;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+    -webkit-overflow-scrolling: touch;
   }
-
+  
   .fleet-card {
-    flex: 0 0 85vw !important;
-    max-width: 400px;
-    height: 480px !important;
-    scroll-snap-align: start;
+    flex: 0 0 320px;
+    padding: 1.75rem;
   }
 }
