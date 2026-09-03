@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/modal-transfer.css">
-    <link rel="stylesheet" href="css/modal-transfer.css">
     <link rel="stylesheet" href="css/modal-package.css">
+    <link rel="stylesheet" href="css/modal-tours.css">
 </head>
 <body>
 
@@ -266,118 +266,168 @@
     </div>
 
     <div id="reserve-package-modal" class="modal-overlay">
-        <div class="modal-container transfer-modal-container package-modal-container">
-            <button class="modal-back-btn" aria-label="Back to options">&larr; Back</button>
-            <button class="modal-close" aria-label="Close modal">&times;</button>
-            
-            <div class="modal-content-step transfer-form-view">
-                <div class="transfer-header">
-                    <h2 class="modal-title">Stay & Transfer Packages</h2>
-                    <p class="transfer-subtitle">Curated resort accommodation paired with private executive transit.</p>
+    <div class="modal-container transfer-modal-container package-modal-container">
+        <button class="modal-back-btn" aria-label="Back to options">&larr; Back</button>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        
+        <!-- Form View -->
+        <div class="modal-content-step transfer-form-view">
+            <div class="transfer-header">
+                <h2 class="modal-title">Stay & Transfer Packages</h2>
+                <p class="transfer-subtitle">Curated resort accommodation paired with private executive transit.</p>
+            </div>
+
+            <form class="package-form">
+                <div class="form-section-title">Trip Details</div>
+                
+                <div class="form-group full-width">
+                    <label>Primary Contact:</label>
+                    <input type="text" placeholder="Full Name" required>
                 </div>
 
-                <form class="package-form">
-                    <div class="form-section-title">Trip Details</div>
-                    
-                    <div class="form-group full-width">
-                        <label>Primary Contact:</label>
-                        <input type="text" placeholder="Full Name" required>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <input type="email" placeholder="name@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Cellphone:</label>
-                            <input type="tel" placeholder="+27 ..." required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Pick Up:</label>
-                            <input type="text" placeholder="Pickup Location" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Drop-Off:</label>
-                            <input type="text" placeholder="Destination" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Number of Passengers:</label>
-                            <input type="number" placeholder="1" min="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Flight Number:</label>
-                            <input type="text" placeholder="e.g. BA 6413">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Arrival Date:</label>
-                            <input type="date" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Departure Date:</label>
-                            <input type="date" required>
-                        </div>
-                    </div>
-
+                <div class="form-row">
                     <div class="form-group">
-                        <label>Departure Time:</label>
-                        <input type="time" required>
+                        <label>Email:</label>
+                        <input type="email" placeholder="name@example.com" required>
                     </div>
-
-                    <div class="form-group toggle-group">
-    <label>Is there a return trip?</label>
-    <label class="switch">
-        <input type="checkbox" id="returnTripToggle">
-        <span class="slider round"></span>
-    </label>
+                    <div class="form-group">
+                        <label>Cellphone:</label>
+                        <input type="tel" placeholder="+27 ..." required>
                     </div>
-
-                    <div id="returnTripFields" class="return-trip-fields hidden">
-                        <div class="form-section-title">Return Trip Details</div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Return Date:</label>
-                                <input type="date">
-                            </div>
-                            <div class="form-group">
-                                <label>Return Time:</label>
-                                <input type="time">
-                            </div>
-                        </div>
-                        <div class="form-group full-width">
-                            <label>Final Drop-Off Location:</label>
-                            <input type="text" placeholder="Return destination">
-                        </div>
-                    </div>
-
-                    <div class="form-section-title">Resort Selection</div>
-                    <div class="resort-track" id="packageResortTrack"></div>
-
-                    <div class="form-section-title">Vehicle Selection</div>
-                    <div class="fleet-track" id="packageFleetTrack"></div>
-
-                    <button type="submit" class="submit-transfer-btn">Request Package Quotation</button>
-                </form>
-            </div>
-
-            <div class="transfer-success-view" id="packageSuccessView">
-                <div class="success-content">
-                    <p class="success-message">
-                        Package request received. Our team is coordinating with our resort partner to curate your stay, and we'll reach out shortly with your custom quotation.
-                    </p>
                 </div>
-                <button class="close-success-btn">Close Window</button>
-            </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Pick Up:</label>
+                        <input type="text" placeholder="Pickup Location" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Drop-Off:</label>
+                        <input type="text" placeholder="Destination" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Number of Passengers:</label>
+                        <input type="number" placeholder="1" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Flight Number:</label>
+                        <input type="text" placeholder="e.g. BA 6413">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Arrival Date:</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Departure Date:</label>
+                        <input type="date" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Departure Time:</label>
+                    <input type="time" required>
+                </div>
+
+                <div class="form-group toggle-group">
+                    <label>Is there a return trip?</label>
+                    <label class="switch">
+                        <input type="checkbox" id="returnTripToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="form-section-title">Resort Selection</div>
+                <div class="resort-track" id="packageResortTrack"></div>
+
+                <div class="form-section-title">Vehicle Selection</div>
+                <div class="fleet-track" id="packageFleetTrack"></div>
+
+                <button type="submit" class="submit-transfer-btn">Request Package Quotation</button>
+            </form>
         </div>
+
+        <!-- Success View -->
+        <div class="transfer-success-view" id="packageSuccessView">
+            <div class="success-content">
+                <p class="success-message">
+                    Package request received. Our team is coordinating with our resort partner to curate your stay, and we'll reach out shortly with your custom quotation.
+                </p>
+            </div>
+            <button class="close-success-btn">Close Window</button>
+        </div>
+    </div>
+    </div>
+
+    <div id="reserve-tour-modal" class="modal-overlay">
+    <div class="modal-container transfer-modal-container tour-modal-container">
+        <button class="modal-back-btn" aria-label="Back to options">&larr; Back</button>
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+
+        <div class="modal-content-step transfer-form-view">
+            <div class="transfer-header">
+                <h2 class="modal-title">Regional Tour & Excursion</h2>
+                <p class="transfer-subtitle">Explore the Lowveld with a dedicated vehicle and expert guide.</p>
+            </div>
+
+            <form class="tour-form">
+                <div class="form-section-title">Trip Details</div>
+                
+                <div class="form-group full-width">
+                    <label>Primary Contact:</label>
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cellphone:</label>
+                        <input type="tel" placeholder="+27 ..." required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Pick Up:</label>
+                        <input type="text" placeholder="Pickup Location" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Drop-Off:</label>
+                        <input type="text" placeholder="Destination" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label>Number of Passengers:</label>
+                        <input type="number" placeholder="1" min="1" required>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Tour Location</div>
+                <div class="package-track" id="tourPackageTrack"></div>
+
+                <button type="submit" class="submit-transfer-btn">Request Tour Quotation</button>
+            </form>
+        </div>
+
+        <div class="transfer-success-view" id="tourSuccessView">
+            <div class="success-content">
+                <p class="success-message">
+                    Your excursion inquiry has been noted. A concierge will review your preferred itinerary and contact you shortly to finalize your custom travel arrangement.
+                </p>
+            </div>
+            <button class="close-success-btn">Close Window</button>
+        </div>
+    </div>
     </div>
 
     <section class="hero-section">
@@ -528,6 +578,7 @@
         </div>
     </footer>
 
+    <!-- scripts -->
     <script type="module">
         import { initServices } from './js/services.js';
         initServices('.services-stack-container');

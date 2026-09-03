@@ -141,7 +141,6 @@
   transition: all 0.2s ease;
 }
 
-/* Hover state styling matching your 5th card requirement */
 .package-card:hover .book-exp-btn,
 .book-exp-btn:hover {
   background: #ffffff;

@@ -110,7 +110,6 @@ if (form) {
             return;
         }
 
-        // Gather all form inputs and selections into a final payload object
         const formData = {
             contactName: form.querySelector('input[placeholder="Full Name"]').value,
             email: form.querySelector('input[type="email"]').value,

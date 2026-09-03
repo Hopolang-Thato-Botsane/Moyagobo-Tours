@@ -1,6 +1,7 @@
 import { initTransferModal } from './modalTransfer.js';
 import { initChauffeurModal } from './modalChauffeur.js';
-import { initPackageModal } from './modalPackage.js';
+import { initPackageModal } from './modalStays.js';
+import { initTourModal } from './modalTours.js';
 
 export function initModal() {
   const triggerBtns = document.querySelectorAll('.reserve-btn, .ask-btn, .footer-reserve-btn');
@@ -51,6 +52,11 @@ export function initModal() {
       if (service === 'stay-transfer' || service === 'packages') {
         modalOverlay.classList.remove('active');
         initPackageModal();
+      }
+
+      if (service === 'regional-tours') {
+        modalOverlay.classList.remove('active');
+        initTourModal();
       }
     });
   });

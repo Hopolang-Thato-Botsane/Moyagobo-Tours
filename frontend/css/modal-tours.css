@@ -1,0 +1,130 @@
+/* Full CSS File for Tour Modal Layout & Card Alignment Corrections */
+
+.tour-modal-container {
+    max-width: 650px;
+}
+
+#tourPackageTrack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+#tourPackageTrack .package-card-option {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 220px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#tourPackageTrack .package-card-option.selected {
+    border-color: #000;
+}
+
+#tourPackageTrack .package-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+#tourPackageTrack .package-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+    z-index: 1;
+}
+
+#tourPackageTrack .package-top,
+#tourPackageTrack .package-info {
+    position: relative;
+    zIndex: 2;
+    color: #fff;
+    width: 100%;
+}
+
+#tourPackageTrack .package-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+#tourPackageTrack .package-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+#tourPackageTrack .package-tags span {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+    white-space: nowrap;
+}
+
+#tourPackageTrack .package-rating {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.5px;
+}
+
+#tourPackageTrack .package-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#tourPackageTrack .package-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+#tourPackageTrack .package-text p {
+    font-size: 13px;
+    line-height: 1.4;
+    opacity: 0.9;
+    margin: 0 0 14px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#tourPackageTrack .package-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    margin-top: auto;
+}
+
+#tourPackageTrack .package-pricing .price {
+    font-weight: 700;
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
