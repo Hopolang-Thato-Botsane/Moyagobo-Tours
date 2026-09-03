@@ -477,7 +477,7 @@
     <section id="fleet-section">
         <div class="fleet-sticky-wrapper">
             <div class="fleet-layout">
-            <div class="fleet-track"></div>
+                <div class="fleet-track" id="mainFleetTrack"></div>
             </div>
         </div>
     </section>
@@ -578,35 +578,23 @@
         </div>
     </footer>
 
-    <!-- scripts -->
     <script type="module">
         import { initServices } from './js/services.js';
-        initServices('.services-stack-container');
-    </script>
-
-    <script type="module">
-        import { initFAQs } from './js/faqs.js';
-        initFAQs('.faq-grid');
-    </script>
-
-    <script type="module">
-        import { initTestimonials } from './js/testimonials.js';
-        initTestimonials('.testimonials-track');
-    </script>
-
-    <script type="module">
-        import { initPackages } from './js/packages.js';
-        initPackages('.packages-grid');
-    </script>
-
-    <script type="module">
         import { initFleet } from './js/fleet.js';
-        initFleet('.fleet-track');
-    </script>
-
-    <script type="module">
+        import { initFAQs } from './js/faqs.js';
+        import { initTestimonials } from './js/testimonials.js';
+        import { initPackages } from './js/packages.js';
         import { initModal } from './js/modal.js';
+        initServices('.services-stack-container');
+        initFAQs('.faq-grid');
+        initTestimonials('.testimonials-track');
+        initPackages('.packages-grid');
         initModal();
+        initFleet('#mainFleetTrack');
+        initFleet('#modalFleetTrack');
+        initFleet('#chauffeurFleetTrack');
+        initFleet('#packageFleetTrack');
+        initFleet('.fleet-track');
     </script>
 
 </body>

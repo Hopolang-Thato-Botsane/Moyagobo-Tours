@@ -1,3 +1,4 @@
+// js/testimonials.js
 export const testimonialData = [
   {
     quote: "The airport transfer was completely seamless. Even with our flight delay, our driver was right there waiting for us. Absolute lifesaver.",
@@ -51,7 +52,28 @@ export function initTestimonials(trackSelector) {
     </div>
   `).join('');
 
-  window.addEventListener('scroll', () => {
+  let currentTranslate = 0;
+  let targetTranslate = 0;
+  let isTicking = false;
+
+  function render() {
+    currentTranslate += (targetTranslate - currentTranslate) * 0.1;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+
+    if (Math.abs(targetTranslate - currentTranslate) > 0.05) {
+      requestAnimationFrame(render);
+    } else {
+      isTicking = false;
+    }
+  }
+
+  function updateScroll() {
+    // Disable desktop scroll-jacking behavior on mobile screens (width <= 1024px)
+    if (window.innerWidth <= 1024) {
+      track.style.transform = 'none';
+      return;
+    }
+
     const rect = wrapper.getBoundingClientRect();
     const wrapperHeight = wrapper.offsetHeight;
     const windowHeight = window.innerHeight;
@@ -59,15 +81,23 @@ export function initTestimonials(trackSelector) {
     const scrollableDistance = wrapperHeight - windowHeight;
     const scrolled = -rect.top;
 
+    let progress = 0;
     if (scrolled >= 0 && scrolled <= scrollableDistance) {
-      const progress = scrolled / scrollableDistance;
-      const maxTranslate = track.scrollWidth - (track.clientWidth - 350);
-      track.style.transform = `translateX(-${progress * maxTranslate}px)`;
-    } else if (scrolled < 0) {
-      track.style.transform = `translateX(0px)`;
-    } else {
-      const maxTranslate = track.scrollWidth - (track.clientWidth - 350);
-      track.style.transform = `translateX(-${maxTranslate}px)`;
+      progress = scrolled / scrollableDistance;
+    } else if (scrolled > scrollableDistance) {
+      progress = 1;
     }
-  });
+
+    const maxTranslate = track.scrollWidth - (track.parentElement.clientWidth - 350);
+    targetTranslate = -progress * Math.max(0, maxTranslate);
+
+    if (!isTicking) {
+      isTicking = true;
+      requestAnimationFrame(render);
+    }
+  }
+
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  window.addEventListener('resize', updateScroll, { passive: true });
+  updateScroll();
 }

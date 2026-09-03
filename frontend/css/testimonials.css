@@ -118,3 +118,45 @@
   font-size: 0.85rem;
   color: #666;
 }
+
+@media (max-width: 1024px) {
+  .testimonials-sticky-wrapper {
+    height: auto !important;
+    position: static !important;
+  }
+
+  .testimonials-layout {
+    position: static !important;
+    flex-direction: column !important;
+    display: block !important;
+  }
+
+  .rating-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 200px !important;
+    margin-bottom: 24px;
+  }
+
+  .testimonials-viewport {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 16px;
+  }
+
+  .testimonials-track {
+    display: flex !important;
+    gap: 20px !important;
+    transform: none !important;
+    width: max-content;
+  }
+
+  .review-card {
+    flex: 0 0 300px !important;
+    min-height: 400px !important;
+    scroll-snap-align: start;
+  }
+}
